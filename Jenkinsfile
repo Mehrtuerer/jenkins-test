@@ -1,9 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('checkout') {
+    stage("Compile") {
       steps {
-        git 'https://github.com/Mehrtuerer/jenkins-test.git'
+        sh "./gradlew compileJava"
+      }
+    }
+    stage("Unit test") {
+      steps {
+        sh "./gradlew test"
       }
     }
   }
